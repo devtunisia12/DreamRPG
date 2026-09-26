@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class AttackTimingBar : MonoBehaviour
 {
@@ -16,7 +18,20 @@ public class AttackTimingBar : MonoBehaviour
     private BattleUnit attacker;
     private BattleUnit target;
     public static int levelattacktoPlayer = 3;
+    private int comboLevel = 0;
 
+    public float comboSpeedIncrease = 100f;
+    public float comboGreenShrink = 15f;
+    public float minimumGreenWidth = 30f;
+
+    private float originalSpeed;
+    private float originalGreenWidth;
+
+    void Start()
+    {
+        originalSpeed = speed;
+        originalGreenWidth = normalZone.sizeDelta.x;
+    }
 
     void Update()
     {
@@ -70,40 +85,128 @@ public class AttackTimingBar : MonoBehaviour
     }
 
 
-    
+
     void StopBar()
     {
         moving = false;
+
         float pos = marker.anchoredPosition.x;
 
+        // PERFECT
+        float greenHalf = normalZone.sizeDelta.x / 2f;
 
-        if (pos >= -79f && pos <= 79f)
+        if (pos >= -greenHalf && pos <= greenHalf)
         {
             damageMultiplier = 3f;
+
             Debug.Log("Perfect Hit!");
+
+            comboLevel++;
+            float newWidth =
+    Mathf.Max(
+        originalGreenWidth - comboGreenShrink * comboLevel,
+        minimumGreenWidth
+    );
+
+            normalZone.sizeDelta = new Vector2(
+                newWidth,
+                normalZone.sizeDelta.y
+            );
+            attacker.animator.SetBool("Attack", true);
+            StartCoroutine(NextPerfectAttack());
+            return;
+
+            speed = originalSpeed + comboSpeedIncrease * comboLevel;
+
+
+
+            // Follow-up
+            StartBar(attacker, target);
+
+            return;
         }
-        else if ((pos >= -145f && pos < -80f) ||
-                 (pos > 80f && pos <= 145f))
+
+
+        // NORMAL
+        else if (
+            (pos >= -84f && pos < -greenHalf) ||
+            (pos > greenHalf && pos <= 84f)
+        )
         {
             damageMultiplier = 1f;
+
             Debug.Log("Normal Hit!");
+
+            target.TakeDamage(
+                Mathf.RoundToInt(
+                    attacker.damage * damageMultiplier
+                )
+            );
+
+            attacker.attackFinished = true;
+            EndCombo();
+
+            return;
         }
+
+        // MISS
         else
         {
-            damageMultiplier = 0;
+            damageMultiplier = 0f;
+
             Debug.Log("Miss!");
+
+            attacker.attackFinished = true;
+
+            EndCombo();
+
+            return;
         }
+    }
 
+    void EndCombo()
+    {
+        comboLevel = 0;
+        attacker.animator.SetBool("run", true);
+        attacker.animator.SetBool("returnready", false);
+        speed = originalSpeed;
 
-        target.TakeDamage(
-        Mathf.RoundToInt(attacker.damage * damageMultiplier)
+        normalZone.sizeDelta = new Vector2(
+            originalGreenWidth,
+            normalZone.sizeDelta.y
         );
-        attacker.attackFinished = true;
 
-
-        gameObject.SetActive(false);
         marker.anchoredPosition = new Vector2(-250, 0);
 
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator NextPerfectAttack()
+    {
+        attacker.animator.SetBool("returnready", false);
+        attacker.SwingSFX.Play();
+
+        yield return new WaitForSeconds(0.3f);
+
+        target.TakeDamage(
+            Mathf.RoundToInt(
+                attacker.damage * 3f
+            )
+        );
+
+        yield return new WaitForSeconds(0.4f);
+
+        if (target == null || target.currentHP <= 0)
+        {
+            attacker.attackFinished = true;
+            EndCombo();
+            gameObject.SetActive(false);
+            yield break;
+        }
+        attacker.animator.SetBool("Attack", false);
+        attacker.animator.SetBool("returnready", true);
+
+        StartBar(attacker, target);
     }
 
     void StopBarEnemy()
@@ -111,13 +214,13 @@ public class AttackTimingBar : MonoBehaviour
         moving = false;
         float pos = marker.anchoredPosition.x;
 
-        if (pos >= -79f && pos <= 79f)
+        if (pos >= -30f && pos <= 30f)
         {
             levelattacktoPlayer = 0;
             Debug.Log("Perfect Hit!");
         }
-        else if ((pos >= -145f && pos < -80f) ||
-                 (pos > 80f && pos <= 145f))
+        else if ((pos >= -84f && pos < -30f) ||
+                 (pos > 30f && pos <= 84f))
         {
             levelattacktoPlayer = 1;
             Debug.Log("Normal Hit!");
@@ -130,8 +233,8 @@ public class AttackTimingBar : MonoBehaviour
 
 
         attacker.attackFinished = true;
-
-
+        attacker.animator.SetBool("run", true);
+        attacker.animator.SetBool("returnready", false);
         gameObject.SetActive(false);
     }
 }

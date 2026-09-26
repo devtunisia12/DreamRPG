@@ -15,17 +15,33 @@ public class CamPosTrigger : MonoBehaviour
     public GameObject BlackS;
     public Animator BlackSanim;
 
+    [Header("Party")]
+    public PlayerManager playerManager;
+    public movement moveact;
+
     void Start()
     {
         BlackS.SetActive(false);
     }
     public void TeleportPlayer()
     {
+        Vector3 oldPlayerPosition = Player.transform.position;
+
+        foreach (GameObject player in moveact.playersPos)
+        {
+            if (player != null)
+            {
+                Vector3 offset = player.transform.position - oldPlayerPosition;
+
+                player.transform.position =
+                    teleportPosition.position + offset;
+            }
+        }
+
         Player.transform.position = teleportPosition.position;
+
         confiner.BoundingShape2D = newBounds;
         confiner.InvalidateBoundingShapeCache();
-        BlackSanim = BlackS.GetComponent<Animator>();
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)

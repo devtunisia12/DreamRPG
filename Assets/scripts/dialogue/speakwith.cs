@@ -23,6 +23,8 @@ public class speakwith : MonoBehaviour
     public Image icon;
     public GameObject warriorPrefab;
     public PlayerManager combatme;
+    public GameObject playerFriend;
+    public movement moveact;
 
     void Start()
     {
@@ -118,6 +120,7 @@ public class speakwith : MonoBehaviour
             if (isFriendFollowing == true)
             {
                 combatme.AddPlayerToParty(warriorPrefab);
+                moveact.playersPos.Add(playerFriend);
                 friendFollowScript.isFollowing = true;
             }
             characteranim.SetBool("talk", false);

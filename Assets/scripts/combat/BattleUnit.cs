@@ -92,11 +92,17 @@ public class BattleUnit : MonoBehaviour
         .StartBar(this, enemy);
 
         yield return new WaitUntil(() => attackFinished == true);
+
         if (animator != null)
-            animator.SetTrigger("Attack");
-        CombatUISystem.canireturn = true;
+        {
+            animator.SetBool("returnready", false);
+            animator.SetBool("Attack", true);
+        }
+
         SwingSFX.Play();
+        CombatUISystem.canireturn = true;
         yield return new WaitForSeconds(1f);
+        animator.SetBool("Attack", false);
         if (animator != null)
             animator.SetBool("run", true);
         while (Vector3.Distance(transform.position, original) > 0.1f)

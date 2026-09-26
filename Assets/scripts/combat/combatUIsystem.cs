@@ -379,7 +379,7 @@ public class CombatUISystem : MonoBehaviour
             mercyobj.sprite = spritemercy;
         }
 
-        if (indexChoice == 1)
+        if (indexChoice == 2)
         {
             attobj.sprite = spriteatt;
             defobj.sprite = spritedefS;
@@ -388,7 +388,7 @@ public class CombatUISystem : MonoBehaviour
             mercyobj.sprite = spritemercy;
         }
 
-        if (indexChoice == 2)
+        if (indexChoice == 3)
         {
             attobj.sprite = spriteatt;
             defobj.sprite = spritedef;
@@ -397,7 +397,7 @@ public class CombatUISystem : MonoBehaviour
             mercyobj.sprite = spritemercy;
         }
 
-        if (indexChoice == 3)
+        if (indexChoice == 4)
         {
             attobj.sprite = spriteatt;
             defobj.sprite = spritedef;
@@ -406,7 +406,7 @@ public class CombatUISystem : MonoBehaviour
             mercyobj.sprite = spritemercy;
         }
 
-        if (indexChoice == 4)
+        if (indexChoice == 1)
         {
             attobj.sprite = spriteatt;
             defobj.sprite = spritedef;
@@ -489,14 +489,14 @@ public class CombatUISystem : MonoBehaviour
                     currentTurnCharacter.selectedAction = BattleCharacter.PlayerAction.Attack;
                     selectPlayerObj.SetActive(true);
                 }
-                else if (indexChoice == 1) // Defense
+                else if (indexChoice == 2) // Defense
                 {
                     isDefenseSelected = true;
                     currentTurnCharacter.selectedAction = BattleCharacter.PlayerAction.Defense;
                     isPlayerSelected = true;
                     selectPlayerObj.SetActive(true);
                 }
-                else if (indexChoice == 2) // Item
+                else if (indexChoice == 3) // Item
                 {
                     if (HasAnyItem())
                     {
@@ -510,7 +510,7 @@ public class CombatUISystem : MonoBehaviour
                         indexChoice = 0;
                     }
                 }
-                else if (indexChoice == 4) // Mercy / Escape
+                else if (indexChoice == 1) // Mercy / Escape
                 {
                     isStartSelected = true;
 
@@ -539,7 +539,7 @@ public class CombatUISystem : MonoBehaviour
             }
             else if (isPlayerSelected && !isEnemySelected && !isItemSelected)
             {
-                if (indexChoice == 0 || indexChoice == 1)
+                if (indexChoice == 0 || indexChoice == 2)
                 {
                     selectedPlayerIndex = activeTurnPlayerIndex;
 
@@ -554,7 +554,7 @@ public class CombatUISystem : MonoBehaviour
                     selectEnemyObj.SetActive(true);
                 }
 
-                if (indexChoice == 2)
+                if (indexChoice == 3)
                 {
                     itemTargetPlayer = indexPlayers;
 
