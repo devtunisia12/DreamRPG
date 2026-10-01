@@ -1190,6 +1190,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b042a6e7dedfc124397efb8db5274f93, type: 3}
   - {fileID: 8300000, guid: 5b2388800e6699546881b0cb7652c409, type: 3}
   - {fileID: 8300000, guid: cbbdec77ef7d27f489b536ae3cec60a2, type: 3}
+  nametx: Quience
+  Stafftx: ezaea
+  armortx: xcw
+  accesstx: dsqdq
+  attacktx: 2
+  deftx: 1
+  manatx: 2
+  bigstafftx: 3
+  scarftx: 4
+  iconplayer: {fileID: 2759201479656166516, guid: e3e4d8967d1c1744cb862764724d1bfb, type: 3}
 --- !u!95 &-3638285258671996076
 Animator:
   serializedVersion: 7
@@ -1276,7 +1286,7 @@ AudioSource:
   m_GameObject: {fileID: 2301875599393968412}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -423976372401568513, guid: 8d661f8384b3db042aec20ff9c99bdf5, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6b5b9c8f25b12ee4aa5699e5e5d6ab33, type: 3}
   m_PlayOnAwake: 0
@@ -2096,7 +2106,7 @@ AudioSource:
   m_GameObject: {fileID: 3697128218969087095}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -423976372401568513, guid: 8d661f8384b3db042aec20ff9c99bdf5, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6b5b9c8f25b12ee4aa5699e5e5d6ab33, type: 3}
   m_PlayOnAwake: 0
@@ -2713,7 +2723,7 @@ AudioSource:
   m_GameObject: {fileID: 6474950903345264615}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -423976372401568513, guid: 8d661f8384b3db042aec20ff9c99bdf5, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -3397,7 +3407,7 @@ AudioSource:
   m_GameObject: {fileID: 8774030813300166646}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -423976372401568513, guid: 8d661f8384b3db042aec20ff9c99bdf5, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

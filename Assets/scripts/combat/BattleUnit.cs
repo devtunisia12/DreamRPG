@@ -30,8 +30,9 @@ public class BattleUnit : MonoBehaviour
     public AudioSource SwingSFX;
     public AudioClip[] sounds;
     int lastSound = -1;
-
-
+    public string nametx, Stafftx, armortx, accesstx;
+    public int attacktx, deftx, manatx, bigstafftx, scarftx;
+    public Sprite iconplayer;
 
     void Start()
     {
@@ -76,7 +77,7 @@ public class BattleUnit : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 enemy.transform.position,
-                8f * Time.deltaTime
+                15f * Time.deltaTime
             );
 
             yield return null;
@@ -110,7 +111,7 @@ public class BattleUnit : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 original,
-                8f * Time.deltaTime
+                15f * Time.deltaTime
             );
 
             yield return null;
@@ -133,7 +134,7 @@ public class BattleUnit : MonoBehaviour
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 player.transform.position,
-                8f * Time.deltaTime
+                15f * Time.deltaTime
             );
 
             yield return null;
@@ -180,7 +181,7 @@ FindObjectOfType<CombatUISystem>();
                  transform.position = Vector3.MoveTowards(
                         transform.position,
                         original,
-                        8f * Time.deltaTime
+                        15f * Time.deltaTime
                  );
 
                  yield return null;
@@ -205,7 +206,7 @@ FindObjectOfType<CombatUISystem>();
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     original,
-                    8f * Time.deltaTime
+                    15f * Time.deltaTime
                 );
 
                 yield return null;

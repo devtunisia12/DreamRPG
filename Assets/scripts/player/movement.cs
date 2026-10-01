@@ -85,7 +85,11 @@ public class movement : MonoBehaviour
                 if (movement.isCombat == false)
                 {
                     animatorpla.SetBool("run", true);
-                    footstepsobj.SetActive(true);
+                    if (pausesystem.isPaused == false)
+                    {
+                        footstepsobj.SetActive(true);
+
+                    }
                 }
                 else
                 {

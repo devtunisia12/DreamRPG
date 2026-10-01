@@ -24,6 +24,38 @@ public class itemsystem : MonoBehaviour
             {
                 movement.NewWeapon += 1;
             }
+            if (typeitem == 5)
+            {
+                itemmenusystem.potionC += 1;
+            }
+            if (typeitem == 6)
+            {
+                itemmenusystem.reviveC += 1;
+            }
+            if (typeitem == 7)
+            {
+                itemmenusystem.ManapotC += 1;
+            }
+            if (typeitem == 8)
+            {
+                itemmenusystem.BjinC += 1;
+            }
+            if (typeitem == 9)
+            {
+                itemmenusystem.keyC += 1;
+            }
+            if (typeitem == 10)
+            {
+                itemmenusystem.OrbC += 1;
+            }
+            if (typeitem == 11)
+            {
+                itemmenusystem.BookC += 1;
+            }
+            if (typeitem == 12)
+            {
+                itemmenusystem.InkC += 1;
+            }
             gameObject.SetActive(false);
         }
     }

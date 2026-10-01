@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class pausesystem : MonoBehaviour
 {
-    public bool isPaused = false;
+    public static bool isPaused = false;
 
     [Header("Main")]
     public GameObject pauseMenuObj;
@@ -20,6 +20,7 @@ public class pausesystem : MonoBehaviour
     public float[] selectorY = { 100, 40, -20 };
 
     private int menuChoice = 0;
+    public AudioSource audioSelect;
 
 
     void Start()
@@ -71,6 +72,7 @@ public class pausesystem : MonoBehaviour
 
     void ShowPage()
     {
+        audioSelect.Play();
         itemPanel.SetActive(menuChoice == 0);
         equipPanel.SetActive(menuChoice == 1);
         optionsPanel.SetActive(menuChoice == 2);
