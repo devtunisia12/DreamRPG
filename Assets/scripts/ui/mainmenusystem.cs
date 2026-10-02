@@ -11,12 +11,15 @@ public class mainmenusystem : MonoBehaviour
 
     public int indexmenu = 0;
     public RectTransform imageChoice;
+    private bool isOptionMenu = false;
+    public GameObject optionMenuobj;
 
     void Start()
     {
         indexmenu = 0;
         audioConfirm = GetComponent<AudioSource>();
         audioSelect = GetComponent<AudioSource>();
+        optionMenuobj.SetActive(false);
     }
     public void LoadLevel()
     {
@@ -33,16 +36,22 @@ public class mainmenusystem : MonoBehaviour
         Application.Quit();
     }
 
+    public void OptionGame()
+    {
+        isOptionMenu = !isOptionMenu;
+        optionMenuobj.SetActive(isOptionMenu);
+    }
+
     void Update()
     {
        
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if ((Input.GetKeyDown(KeyCode.UpArrow)) && !isOptionMenu)
         {
             audioSelect.Play();
             indexmenu--;
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if ((Input.GetKeyDown(KeyCode.DownArrow)) && !isOptionMenu)
         {
             audioSelect.Play();
             indexmenu++;
@@ -54,6 +63,12 @@ public class mainmenusystem : MonoBehaviour
             {
                 audioConfirm.Play();
                 Newlevel();
+            }
+
+            if (indexmenu == 3)
+            {
+                audioConfirm.Play();
+                OptionGame();
             }
 
             if (indexmenu == 4)

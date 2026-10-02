@@ -17,17 +17,15 @@ public class equitmenuUI : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             menuChoice--;
 
             if (menuChoice < 0)
-                menuChoice = playermang.playerPrefabs.Count - 1;
+                menuChoice = playermang.playerPrefabs.Count;
 
             ShowPage();
         }
-
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
