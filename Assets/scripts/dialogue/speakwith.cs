@@ -25,6 +25,7 @@ public class speakwith : MonoBehaviour
     public PlayerManager combatme;
     public GameObject playerFriend;
     public movement moveact;
+    public SaveSystem saveme;
 
     void Start()
     {
@@ -120,7 +121,9 @@ public class speakwith : MonoBehaviour
             if (isFriendFollowing == true)
             {
                 combatme.AddPlayerToParty(warriorPrefab);
+                saveme.AddPlayerToParty2(warriorPrefab);
                 moveact.playersPos.Add(playerFriend);
+                saveme.playersPos2.Add(playerFriend);
                 friendFollowScript.isFollowing = true;
             }
             characteranim.SetBool("talk", false);

@@ -18,7 +18,7 @@ public class CamPosTrigger : MonoBehaviour
     [Header("Party")]
     public PlayerManager playerManager;
     public movement moveact;
-
+    public SaveSystem saveme;
     void Start()
     {
         BlackS.SetActive(false);
@@ -39,7 +39,7 @@ public class CamPosTrigger : MonoBehaviour
         }
 
         Player.transform.position = teleportPosition.position;
-
+        saveme.newBoundsd = newBounds;
         confiner.BoundingShape2D = newBounds;
         confiner.InvalidateBoundingShapeCache();
     }

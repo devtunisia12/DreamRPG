@@ -13,7 +13,8 @@ public class mainmenusystem : MonoBehaviour
     public RectTransform imageChoice;
     private bool isOptionMenu = false;
     public GameObject optionMenuobj;
-
+    public SaveSystem saveme;
+    public static bool isLoaded = false;
     void Start()
     {
         indexmenu = 0;
@@ -28,7 +29,7 @@ public class mainmenusystem : MonoBehaviour
 
     public void Newlevel()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("intro");
     }
 
     public void QuitGame()
@@ -40,6 +41,12 @@ public class mainmenusystem : MonoBehaviour
     {
         isOptionMenu = !isOptionMenu;
         optionMenuobj.SetActive(isOptionMenu);
+    }
+
+    public void LoadG()
+    {
+        isLoaded = true;
+        SceneManager.LoadScene("SampleScene");
     }
 
     void Update()
@@ -63,6 +70,12 @@ public class mainmenusystem : MonoBehaviour
             {
                 audioConfirm.Play();
                 Newlevel();
+            }
+
+            if (indexmenu == 2)
+            {
+                audioConfirm.Play();
+                LoadG();
             }
 
             if (indexmenu == 3)
