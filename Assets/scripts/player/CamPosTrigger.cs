@@ -58,7 +58,7 @@ public class CamPosTrigger : MonoBehaviour
         BlackSanim.SetBool("fade", true);
         yield return new WaitForSeconds(1f);
         TeleportPlayer();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         BlackSanim.SetBool("fade", false);
         yield return new WaitForSeconds(4f);
         BlackS.SetActive(false);
