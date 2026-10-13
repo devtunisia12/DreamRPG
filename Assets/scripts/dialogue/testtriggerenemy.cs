@@ -15,9 +15,11 @@ public class testtriggerenemy : MonoBehaviour
 
     public changingmusic musicchanger;
     public PlayerManager playermana;
+    public GameObject UIbackAnimatedFight;
 
     void Start()
     {
+        UIbackAnimatedFight.SetActive(false);
         camgameplay.SetActive(true);
         Camcombat.SetActive(false);
         combatUI.SetActive(false);
@@ -34,6 +36,7 @@ public class testtriggerenemy : MonoBehaviour
             cam.Follow = lookcombatobjt;
             Camcombat.SetActive(true);
             combatUI.SetActive(true);
+            UIbackAnimatedFight.SetActive(true);
             movement.isCombat = true;
             musicchanger.ChangeMusicToBattle();
             confiner.enabled = false;

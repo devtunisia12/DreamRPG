@@ -77,6 +77,7 @@ public class CombatUISystem : MonoBehaviour
     public AudioSource audioSelect;
     public AudioSource audioConfirm;
     public CinemachineConfiner2D confiner;
+    public GameObject UIbackAnimatedFight;
 
     void Awake()
     {
@@ -850,6 +851,7 @@ public class CombatUISystem : MonoBehaviour
         winText.text = WhoWinner;
 
         yield return new WaitForSeconds(1f);
+        UIbackAnimatedFight.SetActive(false);
         playerManager.ClearBattleObjects();
 
         musicchanger.ChangeBattleToMusic();
