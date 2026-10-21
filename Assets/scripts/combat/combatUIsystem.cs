@@ -78,7 +78,7 @@ public class CombatUISystem : MonoBehaviour
     public AudioSource audioConfirm;
     public CinemachineConfiner2D confiner;
     public GameObject UIbackAnimatedFight;
-
+    public AudioSource winSFX;
     void Awake()
     {
         Instance = this;
@@ -144,6 +144,7 @@ public class CombatUISystem : MonoBehaviour
 
         if (aliveEnemies == 0)
         {
+            winSFX.Play();
             StartCoroutine(WinBattle("Players win"));
             return;
         }
@@ -831,6 +832,7 @@ public class CombatUISystem : MonoBehaviour
 
     IEnumerator WinBattle(string WhoWinner)
     {
+        musicchanger.StopMusic();
         isEnemySelected = false;
         isPlayerSelected = false;
         isSelected = false;
@@ -844,21 +846,30 @@ public class CombatUISystem : MonoBehaviour
         selectEnemyObj.SetActive(false);
         listmenu.SetActive(false);
         imageChoiceObj.SetActive(false);
-
-        yield return new WaitForSeconds(1f);
-
         winTextObj.SetActive(true);
         winText.text = WhoWinner;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         UIbackAnimatedFight.SetActive(false);
         playerManager.ClearBattleObjects();
 
-        musicchanger.ChangeBattleToMusic();
+        if (CamPosTrigger.globalMusic == 0)
+        {
+            musicchanger.ChangeBattleToMusic();
+        }
+        if (CamPosTrigger.globalMusic == 1)
+        {
+            musicchanger.ChangeBattleToMusic2();
+        }
+        if (CamPosTrigger.globalMusic == 2)
+        {
+            musicchanger.ChangeBattleToMusic3();
+        }
         confiner.enabled = true;
         movement.endedwar = false;
         movement.isCombat = false;
-        winTextObj.SetActive(false);
+
+
 
         cam.Follow = playerobjt;
 
@@ -868,7 +879,7 @@ public class CombatUISystem : MonoBehaviour
         Camcombat.SetActive(false);
         combatsystemobj.SetActive(false);
 
-        
+
     }
 
 }

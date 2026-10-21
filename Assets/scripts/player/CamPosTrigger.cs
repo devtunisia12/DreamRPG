@@ -19,12 +19,37 @@ public class CamPosTrigger : MonoBehaviour
     public PlayerManager playerManager;
     public movement moveact;
     public SaveSystem saveme;
+    public float fadetime = 1f;
+    public float fadetimein = 1f;
+    public float stoptime = 4f;
+    public bool ChangeMusic = false;
+    public int levelMusic=0;
+    public static int globalMusic = 0;
+    public changingmusic changeme;
     void Start()
     {
         BlackS.SetActive(false);
     }
     public void TeleportPlayer()
     {
+        if (ChangeMusic == true)
+        {
+            if (levelMusic == 0)
+            {
+                globalMusic = levelMusic;
+                changeme.ChangeBattleToMusic();
+            }
+            if (levelMusic == 1)
+            {
+                globalMusic = levelMusic;
+                changeme.ChangeBattleToMusic2();
+            }
+            if (levelMusic == 2)
+            {
+                globalMusic = levelMusic;
+                changeme.ChangeBattleToMusic3();
+            }
+        }
         Vector3 oldPlayerPosition = Player.transform.position;
 
         foreach (GameObject player in moveact.playersPos)
@@ -56,11 +81,11 @@ public class CamPosTrigger : MonoBehaviour
     {
         BlackS.SetActive(true);
         BlackSanim.SetBool("fade", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(fadetime);
         TeleportPlayer();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(fadetimein);
         BlackSanim.SetBool("fade", false);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(stoptime);
         BlackS.SetActive(false);
 
     }

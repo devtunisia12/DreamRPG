@@ -1200,6 +1200,7 @@ MonoBehaviour:
   bigstafftx: 3
   scarftx: 4
   iconplayer: {fileID: 2759201479656166516, guid: e3e4d8967d1c1744cb862764724d1bfb, type: 3}
+  isQuince: 0
 --- !u!95 &-3638285258671996076
 Animator:
   serializedVersion: 7

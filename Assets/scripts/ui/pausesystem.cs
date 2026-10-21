@@ -21,7 +21,8 @@ public class pausesystem : MonoBehaviour
 
     private int menuChoice = 0;
     public AudioSource audioSelect;
-
+    public GameObject GameOverUI, blackscreendead;
+    public SaveSystem saveme;
 
     void Start()
     {
@@ -104,6 +105,17 @@ public class pausesystem : MonoBehaviour
         pauseMenuObj.SetActive(false);
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        mainmenusystem.isLoaded = true;
+
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex
+        );
+    }
 
     public void QuitGame()
     {

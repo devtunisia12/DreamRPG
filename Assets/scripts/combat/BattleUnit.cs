@@ -34,9 +34,18 @@ public class BattleUnit : MonoBehaviour
     public int attacktx, deftx, manatx, bigstafftx, scarftx;
     public Sprite iconplayer;
 
+    public bool isQuince = false;
     void Start()
     {
-        currentHP = maxHP;
+        if (isPlayerorNot)
+        {
+            currentHP = movement.currentHPPlayer;
+        }
+        else
+        {
+            currentHP = maxHP;
+        }
+
         if (isPlayerorNot)
         {
             healthMaxtxt.text = maxHP.ToString();
@@ -238,6 +247,11 @@ FindObjectOfType<CombatUISystem>();
         PlaySoundHit();
         bodyHitedSFX.Play();
         currentHP -= amount;
+
+        if (isPlayerorNot)
+        {
+            movement.currentHPPlayer = currentHP;
+        }
         textHealthmis.text = "-" + amount.ToString();
         StartCoroutine(stopshowingHptext());
         CombatUISystem ui =
@@ -246,7 +260,17 @@ FindObjectOfType<CombatUISystem>();
         {
             animator.SetTrigger("Hit");
         }
-
+        if (isQuince == true)
+        {
+            if (currentHP <= 0)
+            {
+                currentHP = movement.currentHPPlayer+20;
+            }
+            else
+            {
+                currentHP = movement.currentHPPlayer;
+            }
+        }
 
         Debug.Log(name + " HP : " + currentHP);
 

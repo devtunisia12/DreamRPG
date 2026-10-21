@@ -1,28 +1,83 @@
+
 using UnityEngine;
 
 public class changingmusic : MonoBehaviour
 {
     private AudioSource audioSource;
-    public AudioClip clip1, battleclip1;
+
+    public AudioClip clip1, battleclip1, deadclip, clip2, clip3;
+
+    public string currentMusicName;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = clip1;
+
+        string savedMusic = PlayerPrefs.GetString("CurrentMusic", "clip1");
+
+        switch (savedMusic)
+        {
+            case "clip2":
+                PlayMusic(clip2, "clip2");
+                break;
+
+            case "clip3":
+                PlayMusic(clip3, "clip3");
+                break;
+
+            default:
+                PlayMusic(clip1, "clip1");
+                break;
+        }
+    }
+
+    void PlayMusic(AudioClip clip, string musicName)
+    {
+        if (clip == null) return;
+
+        audioSource.Stop();
+        audioSource.clip = clip;
         audioSource.Play();
+
+        currentMusicName = musicName;
+    }
+
+    void SaveNormalMusic(string musicName)
+    {
+        PlayerPrefs.SetString("CurrentMusic", musicName);
+        PlayerPrefs.Save();
     }
 
     public void ChangeMusicToBattle()
     {
-        audioSource.Stop();
-        audioSource.clip = battleclip1;
-        audioSource.Play();
+        PlayMusic(battleclip1, "battleclip1");
     }
 
     public void ChangeBattleToMusic()
     {
-        audioSource.Stop();
-        audioSource.clip = clip1;
-        audioSource.Play();
+        PlayMusic(clip1, "clip1");
+        SaveNormalMusic("clip1");
     }
 
+    public void ChangeBattleToMusic2()
+    {
+        PlayMusic(clip2, "clip2");
+        SaveNormalMusic("clip2");
+    }
+
+    public void ChangeBattleToMusic3()
+    {
+        PlayMusic(clip3, "clip3");
+        SaveNormalMusic("clip3");
+    }
+
+    public void ChangeMusicToDead()
+    {
+        PlayMusic(deadclip, "deadclip");
+    }
+
+    public void StopMusic()
+    {
+        audioSource.Stop();
+    }
 }

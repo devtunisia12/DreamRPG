@@ -56,6 +56,7 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("OrbC", itemmenusystem.OrbC);
         PlayerPrefs.SetInt("BookC", itemmenusystem.BookC);
         PlayerPrefs.SetInt("InkC", itemmenusystem.InkC);
+        PlayerPrefs.SetInt("MusicV", itemmenusystem.InkC);
 
         SaveFriends();
 
@@ -136,7 +137,7 @@ public class SaveSystem : MonoBehaviour
 
 
 
-    void LoadFriends()
+    public void LoadFriends()
     {
         int friendCount = PlayerPrefs.GetInt("FriendCount", 0);
 

@@ -1,5 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
 
 public class mainmenusystem : MonoBehaviour
 {
@@ -15,12 +19,18 @@ public class mainmenusystem : MonoBehaviour
     public GameObject optionMenuobj;
     public SaveSystem saveme;
     public static bool isLoaded = false;
+    public string loadmode = "null";
+    public GameObject loadObj;
+    public TextMeshProUGUI loadingtxt;
+
     void Start()
     {
+        loadingtxt.text = "Loading .";
         indexmenu = 0;
         audioConfirm = GetComponent<AudioSource>();
         audioSelect = GetComponent<AudioSource>();
         optionMenuobj.SetActive(false);
+        loadObj.SetActive(false);
     }
     public void LoadLevel()
     {
@@ -29,7 +39,8 @@ public class mainmenusystem : MonoBehaviour
 
     public void Newlevel()
     {
-        SceneManager.LoadScene("intro");
+        loadmode = "intro";
+        StartCoroutine(loadingstuff());
     }
 
     public void QuitGame()
@@ -45,8 +56,44 @@ public class mainmenusystem : MonoBehaviour
 
     public void LoadG()
     {
-        isLoaded = true;
-        SceneManager.LoadScene("SampleScene");
+        loadmode = "loadme";
+        StartCoroutine(loadingstuff());
+    }
+
+    IEnumerator loadingstuff()
+    {
+        loadObj.SetActive(true);
+        loadingtxt.text = "Loading .";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ..";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ...";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading .";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ..";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ...";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading .";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ..";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading ...";
+        yield return new WaitForSeconds(0.5f);
+        loadingtxt.text = "Loading .";
+
+        if (loadmode== "intro")
+        {
+            SceneManager.LoadScene("intro");
+        }
+        if (loadmode == "loadme")
+        {
+            isLoaded = true;
+            SceneManager.LoadScene("SampleScene");
+        }
+        loadObj.SetActive(false);
+
     }
 
     void Update()
