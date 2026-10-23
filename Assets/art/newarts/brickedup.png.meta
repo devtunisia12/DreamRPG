@@ -156,7 +156,7 @@ TextureImporter:
         width: 233
         height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,6 +165,28 @@ TextureImporter:
       bones: []
       spriteID: ca7011f24c3c39149893d6492cc912d2
       internalID: 1219305759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brickedup_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 47
+        width: 233
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e1c2a1c3371ea345952af90931e79f5
+      internalID: 1549472025
       vertices: []
       indices: 
       edges: []
@@ -185,6 +207,7 @@ TextureImporter:
     nameFileIdTable:
       brickedup_0: 4626911523628128462
       brickedup_1: 1219305759
+      brickedup_2: 1549472025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

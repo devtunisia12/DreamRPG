@@ -79,6 +79,9 @@ public class CombatUISystem : MonoBehaviour
     public CinemachineConfiner2D confiner;
     public GameObject UIbackAnimatedFight;
     public AudioSource winSFX;
+    public GameObject fadeObj;
+    public Animator BlackSanim;
+
     void Awake()
     {
         Instance = this;
@@ -98,7 +101,7 @@ public class CombatUISystem : MonoBehaviour
         talkobj.sprite = spritetalk;
         itemobj.sprite = spriteitem;
         mercyobj.sprite = spritemercy;
-
+        BlackSanim=fadeObj.GetComponent<Animator>();
         animUICombat = UICombatObj.GetComponent<Animator>();
         animUICombat.SetBool("start", false);
         winTextObj.SetActive(false);
@@ -848,8 +851,10 @@ public class CombatUISystem : MonoBehaviour
         imageChoiceObj.SetActive(false);
         winTextObj.SetActive(true);
         winText.text = WhoWinner;
-
         yield return new WaitForSeconds(3f);
+        fadeObj.SetActive(true);
+        BlackSanim.SetBool("fade", true);
+        yield return new WaitForSeconds(1f);
         UIbackAnimatedFight.SetActive(false);
         playerManager.ClearBattleObjects();
 
@@ -877,8 +882,9 @@ public class CombatUISystem : MonoBehaviour
         movement.isCombat = false;
 
         Camcombat.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        BlackSanim.SetBool("fade", false);
         combatsystemobj.SetActive(false);
-
 
     }
 

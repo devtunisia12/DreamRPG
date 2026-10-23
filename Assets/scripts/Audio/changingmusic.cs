@@ -5,7 +5,7 @@ public class changingmusic : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public AudioClip clip1, battleclip1, deadclip, clip2, clip3;
+    public AudioClip clip1, battleclip1, deadclip, clip2, clip3, clip4;
 
     public string currentMusicName;
 
@@ -23,6 +23,10 @@ public class changingmusic : MonoBehaviour
 
             case "clip3":
                 PlayMusic(clip3, "clip3");
+                break;
+
+            case "clip4":
+                PlayMusic(clip4, "clip4");
                 break;
 
             default:
@@ -69,6 +73,12 @@ public class changingmusic : MonoBehaviour
     {
         PlayMusic(clip3, "clip3");
         SaveNormalMusic("clip3");
+    }
+
+    public void ChangeBattleToMusic4()
+    {
+        PlayMusic(clip4, "clip4");
+        SaveNormalMusic("clip4");
     }
 
     public void ChangeMusicToDead()
